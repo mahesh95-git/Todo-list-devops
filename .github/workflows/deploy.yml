@@ -27,7 +27,7 @@ jobs:
 
       - name: Build and push frontend
         run: |
-          docker build -t maheshrathodacr01.azurecr.io/todo-client:${{ github.sha }} ./todo-client
+          docker build --build-arg VITE_API_URL=/api -t maheshrathodacr01.azurecr.io/todo-client:${{ github.sha }} ./todo-client
           docker push maheshrathodacr01.azurecr.io/todo-client:${{ github.sha }}
       - name: Deploy to Azure VM
         uses: appleboy/ssh-action@v1.2.2
