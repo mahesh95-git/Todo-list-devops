@@ -4,7 +4,7 @@ import { AuthResponseData, LoginPayload, RegisterPayload, User } from '../types/
 
 export const authApi = {
   async register(payload: RegisterPayload): Promise<AuthResponseData> {
-    const res = await apiClient.post<ApiResponse<AuthResponseData>>('/api/auth/register', payload);
+    const res = await apiClient.post<ApiResponse<AuthResponseData>>('/auth/register', payload);
     if (!res.data.data) {
       throw new Error(res.data.message || 'Registration failed');
     }
@@ -12,7 +12,7 @@ export const authApi = {
   },
 
   async login(payload: LoginPayload): Promise<AuthResponseData> {
-    const res = await apiClient.post<ApiResponse<AuthResponseData>>('/api/auth/login', payload);
+    const res = await apiClient.post<ApiResponse<AuthResponseData>>('/auth/login', payload);
     if (!res.data.data) {
       throw new Error(res.data.message || 'Login failed');
     }
@@ -20,7 +20,7 @@ export const authApi = {
   },
 
   async getMe(): Promise<User> {
-    const res = await apiClient.get<ApiResponse<User>>('/api/auth/me');
+    const res = await apiClient.get<ApiResponse<User>>('/auth/me');
     if (!res.data.data) {
       throw new Error(res.data.message || 'Failed to fetch user');
     }

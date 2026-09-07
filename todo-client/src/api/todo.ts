@@ -21,7 +21,7 @@ export const todoApi = {
     if (params.sortOrder) queryParams.set('sortOrder', params.sortOrder);
 
     const queryString = queryParams.toString();
-    const url = `/api/todos${queryString ? `?${queryString}` : ''}`;
+    const url = `/todos${queryString ? `?${queryString}` : ''}`;
 
     const res = await apiClient.get<ApiResponse<Todo[]>>(url);
     const pagination = res.data.meta?.pagination || {
@@ -38,7 +38,7 @@ export const todoApi = {
   },
 
   async getTodoById(id: number): Promise<Todo> {
-    const res = await apiClient.get<ApiResponse<Todo>>(`/api/todos/${id}`);
+    const res = await apiClient.get<ApiResponse<Todo>>(`/todos/${id}`);
     if (!res.data.data) {
       throw new Error(res.data.message || 'Todo not found');
     }
@@ -46,7 +46,7 @@ export const todoApi = {
   },
 
   async createTodo(payload: CreateTodoPayload): Promise<Todo> {
-    const res = await apiClient.post<ApiResponse<Todo>>('/api/todos', payload);
+    const res = await apiClient.post<ApiResponse<Todo>>('/todos', payload);
     if (!res.data.data) {
       throw new Error(res.data.message || 'Failed to create todo');
     }
@@ -54,7 +54,7 @@ export const todoApi = {
   },
 
   async updateTodo(id: number, payload: UpdateTodoPayload): Promise<Todo> {
-    const res = await apiClient.patch<ApiResponse<Todo>>(`/api/todos/${id}`, payload);
+    const res = await apiClient.patch<ApiResponse<Todo>>(`/todos/${id}`, payload);
     if (!res.data.data) {
       throw new Error(res.data.message || 'Failed to update todo');
     }
@@ -62,7 +62,7 @@ export const todoApi = {
   },
 
   async deleteTodo(id: number): Promise<number> {
-    const res = await apiClient.delete<ApiResponse<{ id: number }>>(`/api/todos/${id}`);
+    const res = await apiClient.delete<ApiResponse<{ id: number }>>(`/todos/${id}`);
     return res.data.data?.id ?? id;
   },
 };

@@ -27,12 +27,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(validateHeaders);
 
 // Health check route
-app.get("/health", (req, res) => {
-  res.json({ status: "OK", message: "Server is running" });
+app.get("/api/health", (req, res) => {
+  res.json({ status: "OK", message: "Server is running " });
 });
 
-app.get("/", (req, res) => {
-  res.send("Hello from server!");
+app.get("/api", (req, res) => {
+  res.send("Hello from server");
 });
 
 // API routes
