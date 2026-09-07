@@ -32,7 +32,7 @@ app.get("/api/health", (req, res) => {
 });
 
 app.get("/api", (req, res) => {
-  res.send("Hello from server");
+  res.send("Hello World!");
 });
 
 // API routes

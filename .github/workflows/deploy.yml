@@ -37,7 +37,7 @@ jobs:
             key: ${{ secrets.AZURE_VM_SSH_KEY }}
             script: |
                cd ~/Todo-list-devops
-                docker-compose down
+                docker compose down
                 
                 export IMAGE_TAG=${{ github.sha }}
 
